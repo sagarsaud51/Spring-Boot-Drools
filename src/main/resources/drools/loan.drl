@@ -1,0 +1,31 @@
+import  oi.demo.drools.dto.LoanRequest;
+import java.math.RoundingMode;
+import java.math.BigDecimal;
+dialect "mvel"
+
+rule "When applied loan is less than 200000"
+    when
+        loanRequest : LoanRequest(appliedLoan < 200000);
+    then
+        loanRequest.setApproved(true);
+end;
+
+
+rule "When applied loan is more than 200000 and between 1000000"
+    when
+        loanRequest : LoanRequest(appliedLoan >= 200000 && appliedLoan <= 1000000, dividewithHighCeiling(appliedLoan, monthlyIncome) < 24);
+    then
+        loanRequest.setApproved(true);
+end;
+
+rule "When applied loan is more than 1000000"
+    when
+        loanRequest : LoanRequest(appliedLoan > 1000000, dividewithHighCeiling(appliedLoan, monthlyIncome) < 180);
+    then
+        loanRequest.setApproved(true);
+end;
+
+
+function BigDecimal dividewithHighCeiling(BigDecimal numerator, BigDecimal denominator){
+    return numerator.divide(denominator, RoundingMode.HALF_UP);
+}

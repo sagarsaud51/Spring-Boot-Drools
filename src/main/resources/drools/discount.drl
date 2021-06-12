@@ -1,0 +1,24 @@
+import oi.demo.drools.dto.OrderRequest;
+
+dialect "mvel"
+
+rule "Discount for CARD payment above 10000"
+    when
+        orderObject : OrderRequest( paymentType=="CARD" && totalPrice > 10000 );
+    then
+        orderObject.setDiscount(Double.valueOf(15));
+end;
+
+rule "Discount for CARD payment below 10000"
+    when
+        orderObject : OrderRequest( paymentType=="CARD" && totalPrice > 5000 && totalPrice < 10000 );
+    then
+        orderObject.setDiscount(Double.valueOf(5));
+end;
+
+rule "Discount for CASH payment above 10000"
+    when
+        orderObject : OrderRequest( paymentType=="CASH" && totalPrice > 10000);
+    then
+        orderObject.setDiscount(.25);
+end;
