@@ -1,0 +1,51 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Drools",
+		"_postman_id": "96500e81-582b-5a97-0d89-b9d4e97e5cb2",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "discount request",
+			"request": {
+				"url": "http://localhost:8080/api/discount",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"orderId\": \"123\",\n\t\"paymentType\": \"CASH\",\n\t\"totalPrice\": 500\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Loan Request",
+			"request": {
+				"url": "http://localhost:8080/api/discount",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"orderId\": \"123\",\n\t\"paymentType\": \"CASH\",\n\t\"totalPrice\": 500\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
